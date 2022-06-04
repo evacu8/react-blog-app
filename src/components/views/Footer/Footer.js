@@ -1,9 +1,7 @@
-import styles from './Footer.module.scss';
-
 const Footer = () => {
   return (
-    <div className={styles.footer}>
-      Footer
+    <div className='text-center text-muted py-3'>
+      Copyright &copy; BlogApp 2022
     </div>
   );
 };
