@@ -1,6 +1,7 @@
 import { Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
-const Post = props => {
+const PostCard = props => {
   return (
     <div className='col-sm-6 col-lg-4 my-2'>
       <Card >
@@ -15,11 +16,13 @@ const Post = props => {
           <Card.Text className='my-2'>
             {props.shortDescription}
           </Card.Text>
-          <button type="button" className='btn btn-primary'>Read more</button>
+          <Link to={`/post/${props.id}`}>
+            <button type="button" className='btn btn-primary'>Read more</button>
+          </Link>
         </Card.Body>
       </Card>
     </div>
   );
 };
 
-export default Post;
+export default PostCard;
