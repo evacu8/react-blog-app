@@ -4,11 +4,17 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { getPostById } from '../../../redux/postsRedux';
 import { Navigate } from 'react-router-dom';
+import DeleteModal from '../../views/DeleteModal/DeleteModal';
+import { useState } from 'react';
 
 const SinglePost = () => {
 
   const { id } = useParams();
   const postData = useSelector(state => getPostById(state, id));
+
+  const [showModal, setShowModal] = useState(false);
+  const handleClose = () => setShowModal(false);
+  const handleShow = () => setShowModal(true);
 
   if(!postData) return <Navigate to="/" />
 
@@ -22,7 +28,7 @@ const SinglePost = () => {
               <Link to={`/post/edit/${id}`}>
                 <button type="button" className='btn btn-outline-info me-2'>Edit</button>
               </Link>
-              <button type="button" className='btn btn-outline-danger'>Delete</button>
+              <button type="button" className='btn btn-outline-danger' onClick={handleShow}>Delete</button>
             </div>
           </div>
           <Card.Text className='my-0'>
@@ -36,6 +42,7 @@ const SinglePost = () => {
           </Card.Text>
         </Card.Body>
       </Card>
+      <DeleteModal id={id} show={showModal} handleClose={handleClose}/>
     </Container>
   );
 };
