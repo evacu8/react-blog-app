@@ -1,13 +1,15 @@
 import { Card, Container } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useParams, Link, Navigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { getPostById } from '../../../redux/postsRedux';
-import { Navigate } from 'react-router-dom';
 import DeleteModal from '../../views/DeleteModal/DeleteModal';
 import { useState } from 'react';
+import { removePost } from '../../../redux/postsRedux';
+
 
 const SinglePost = () => {
+
+  const dispatch = useDispatch();
 
   const { id } = useParams();
   const postData = useSelector(state => getPostById(state, id));
@@ -15,6 +17,14 @@ const SinglePost = () => {
   const [showModal, setShowModal] = useState(false);
   const handleClose = () => setShowModal(false);
   const handleShow = () => setShowModal(true);
+
+  const handleRemove = (e) => {
+    e.preventDefault();
+    setShowModal(false);
+    dispatch(removePost(id));
+  }
+
+  if(!id) return <Navigate to="/" />
 
   if(!postData) return <Navigate to="/" />
 
@@ -42,7 +52,7 @@ const SinglePost = () => {
           </Card.Text>
         </Card.Body>
       </Card>
-      <DeleteModal id={id} show={showModal} handleClose={handleClose}/>
+      <DeleteModal id={id} show={showModal} handleClose={handleClose} handleRemove={handleRemove}/>
     </Container>
   );
 };
