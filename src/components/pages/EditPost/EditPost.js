@@ -1,9 +1,9 @@
-import styles from './EditPost.module.scss';
+import EditPostForm from '../../features/EditPostForm/EditPostForm';
 
 const EditPost = () => {
   return (
-    <div className={styles.editPost}>
-      <h1>EditPost</h1> 
+    <div>
+      <EditPostForm /> 
     </div>
   );
 };
