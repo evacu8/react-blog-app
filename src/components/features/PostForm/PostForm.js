@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { Container } from "react-bootstrap";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const PostForm = ({ action, actionText, ...props}) => {
 
@@ -30,7 +32,8 @@ const PostForm = ({ action, actionText, ...props}) => {
         </div>
         <div className="mb-3">
           <label htmlFor="published" className="form-label">Published</label>
-          <input type="date" className="form-control" id="published" placeholder="Published" value={publishedDate} onChange={e => setPublishedDate(e.target.value)} />
+          {/* <input type="date" className="form-control" id="published" placeholder="Published" value={publishedDate} onChange={e => setPublishedDate(e.target.value)} /> */}
+          <DatePicker id="published" selected={publishedDate} onChange={date => setPublishedDate(date)} />
         </div>
         <div className="mb-3">
           <label htmlFor="shortDescription" className="form-label">Short description</label>

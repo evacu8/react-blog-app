@@ -5,7 +5,7 @@ import { getPostById } from '../../../redux/postsRedux';
 import DeleteModal from '../../views/DeleteModal/DeleteModal';
 import { useState } from 'react';
 import { removePost } from '../../../redux/postsRedux';
-
+import { dateToStr } from '../../../utils/dateToStr';
 
 const SinglePost = () => {
 
@@ -45,11 +45,9 @@ const SinglePost = () => {
             <strong>Author:</strong> {postData.author}
           </Card.Text>
           <Card.Text className='my-0'>
-            <strong>Publised:</strong> {postData.publishedDate}
+            <strong>Published:</strong> {dateToStr(postData.publishedDate)}
           </Card.Text>
-          {/* <Card.Text className='my-2'> */}
-            <p className='my-2' dangerouslySetInnerHTML={{ __html: postData.content }} />
-          {/* </Card.Text> */}
+          <p className='my-2' dangerouslySetInnerHTML={{ __html: postData.content }} />
         </Card.Body>
       </Card>
       <DeleteModal id={id} show={showModal} handleClose={handleClose} handleRemove={handleRemove}/>
