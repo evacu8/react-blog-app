@@ -38,7 +38,7 @@ const PostForm = ({ action, actionText, ...props}) => {
         </div>
         <div className="mb-3">
           <label htmlFor="MainContent" className="form-label">Main content</label>
-          <ReactQuill theme="snow" id="MainContent" value={content} onChange={e => setContent(e.target.value)} />
+          <ReactQuill theme="snow" id="MainContent" value={content} onChange={setContent} />
         </div>
       </form>
       <button type="button" className='btn btn-primary' onClick={handleSubmit}>{actionText}</button>

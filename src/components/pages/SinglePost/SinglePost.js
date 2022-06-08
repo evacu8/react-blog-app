@@ -47,9 +47,9 @@ const SinglePost = () => {
           <Card.Text className='my-0'>
             <strong>Publised:</strong> {postData.publishedDate}
           </Card.Text>
-          <Card.Text className='my-2'>
-            {postData.content}
-          </Card.Text>
+          {/* <Card.Text className='my-2'> */}
+            <p className='my-2' dangerouslySetInnerHTML={{ __html: postData.content }} />
+          {/* </Card.Text> */}
         </Card.Body>
       </Card>
       <DeleteModal id={id} show={showModal} handleClose={handleClose} handleRemove={handleRemove}/>
