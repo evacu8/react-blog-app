@@ -1,4 +1,6 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 import { Container } from "react-bootstrap";
 
 const PostForm = ({ action, actionText, ...props}) => {
@@ -36,7 +38,7 @@ const PostForm = ({ action, actionText, ...props}) => {
         </div>
         <div className="mb-3">
           <label htmlFor="MainContent" className="form-label">Main content</label>
-          <textarea className="form-control" id="MainContent" rows="10" placeholder="Enter main content here" value={content} onChange={e => setContent(e.target.value)}></textarea>
+          <ReactQuill theme="snow" id="MainContent" value={content} onChange={e => setContent(e.target.value)} />
         </div>
       </form>
       <button type="button" className='btn btn-primary' onClick={handleSubmit}>{actionText}</button>
