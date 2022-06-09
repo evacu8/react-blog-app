@@ -4,6 +4,7 @@ import 'react-quill/dist/quill.snow.css';
 import { Container } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useForm } from "react-hook-form";
 
 const PostForm = ({ action, actionText, ...props}) => {
 
@@ -12,39 +13,89 @@ const PostForm = ({ action, actionText, ...props}) => {
   const [publishedDate, setPublishedDate] = useState(props.publishedDate || '');
   const [shortDescription, setShortDescription] = useState(props.shortDescription || '');
   const [content, setContent] = useState(props.content || '');
+  const { register, handleSubmit: validate, formState: { errors } } = useForm();
 
   const handleSubmit = e => {
-    e.preventDefault();
     action({ title, author, publishedDate, shortDescription, content });
   };
 
   return (
     <Container className='col-lg-8'>
       <h1>{actionText}</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={validate(handleSubmit)}>
+
         <div className="mb-3">
           <label htmlFor="title" className="form-label">Title</label>
-          <input type="text" className="form-control" id="title" placeholder="Enter Title" value={title} onChange={e => setTitle(e.target.value)} />
+          <input 
+            {...register(
+              "title", 
+              { 
+                required: true,
+                minLength: 3, 
+              }
+            )}
+            type="text" 
+            className="form-control" 
+            id="title" 
+            placeholder="Enter Title" 
+            value={title} 
+            onChange={e => setTitle(e.target.value)} 
+          />
+          {errors.title && <small className="d-block form-text text-danger mt-2">Title is too short (min is 3)</small>}
         </div>
+
         <div className="mb-3">
           <label htmlFor="author" className="form-label">Author</label>
-          <input type="text" className="form-control" id="author" placeholder="Enter Author" value={author} onChange={e => setAuthor(e.target.value)} />
+          <input
+            {...register(
+              "author", 
+              { 
+                required: true,
+                minLength: 3, 
+              }
+            )}
+            type="text" 
+            className="form-control" 
+            id="author" 
+            placeholder="Enter Author" 
+            value={author} 
+            onChange={e => setAuthor(e.target.value)} 
+          />
+          {errors.author && <small className="d-block form-text text-danger mt-2">Title is too short (min is 3)</small>}
         </div>
+
         <div className="mb-3">
           <label htmlFor="published" className="form-label">Published</label>
-          {/* <input type="date" className="form-control" id="published" placeholder="Published" value={publishedDate} onChange={e => setPublishedDate(e.target.value)} /> */}
           <DatePicker id="published" selected={publishedDate} onChange={date => setPublishedDate(date)} />
         </div>
+
         <div className="mb-3">
           <label htmlFor="shortDescription" className="form-label">Short description</label>
-          <textarea className="form-control" id="shortDescription" rows="3" placeholder="Enter short description here" value={shortDescription} onChange={e => setShortDescription(e.target.value)} ></textarea>
+          <textarea 
+            {...register(
+              "shortDescription", 
+              { 
+                required: true,
+                minLength: 20, 
+              }
+            )}
+            className="form-control" 
+            id="shortDescription" 
+            rows="3" 
+            placeholder="Enter short description here" 
+            value={shortDescription} 
+            onChange={e => setShortDescription(e.target.value)} >
+          </textarea>
+          {errors.shortDescription && <small className="d-block form-text text-danger mt-2">Title is too short (min is 20)</small>}
         </div>
+
         <div className="mb-3">
           <label htmlFor="MainContent" className="form-label">Main content</label>
           <ReactQuill theme="snow" id="MainContent" value={content} onChange={setContent} />
         </div>
+
       </form>
-      <button type="button" className='btn btn-primary' onClick={handleSubmit}>{actionText}</button>
+      <button type="button" className='btn btn-primary' onClick={validate(handleSubmit)}>{actionText}</button>
     </Container>
   );
 
