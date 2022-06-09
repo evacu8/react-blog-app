@@ -14,6 +14,9 @@ const PostCard = props => {
           <Card.Text className='my-0'>
             <strong>Published:</strong> {dateToStr(props.publishedDate)}
           </Card.Text>
+          <Card.Text className='my-0'>
+            <strong>Category:</strong> {props.category}
+          </Card.Text>
           <Card.Text className='my-2'>
             {props.shortDescription}
           </Card.Text>

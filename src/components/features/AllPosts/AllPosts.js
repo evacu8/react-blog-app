@@ -18,7 +18,14 @@ const AllPosts = () => {
       </div>
       <ul className="d-flex flex-wrap row">
         {posts.map(post => 
-          <PostCard key={post.id} title={post.title} id={post.id} shortDescription={post.shortDescription} author={post.author} publishedDate={post.publishedDate}/>)}
+          <PostCard 
+            key={post.id} 
+            title={post.title} 
+            id={post.id} 
+            shortDescription={post.shortDescription} 
+            author={post.author} 
+            publishedDate={post.publishedDate} 
+            category={post.category}/>)}
       </ul>
       </Container>
   );
