@@ -5,6 +5,7 @@ import { Container } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useForm } from "react-hook-form";
+import CategorySelect from "../CategorySelect/CategorySelect";
 
 const PostForm = ({ action, actionText, ...props}) => {
 
@@ -74,7 +75,12 @@ const PostForm = ({ action, actionText, ...props}) => {
           <label htmlFor="published" className="form-label">Published</label>
           <DatePicker id="published" selected={publishedDate} onChange={date => setPublishedDate(date)} />
           {dateError && <small className="d-block form-text text-danger mt-2">Date can't be empty</small>}
+        </div>
 
+        <div className="mb-3">
+          <label htmlFor="category" className="form-label">Category</label>
+            <CategorySelect />
+          {/* {categoryError && <small className="d-block form-text text-danger mt-2">Select category</small>} */}
         </div>
 
         <div className="mb-3">

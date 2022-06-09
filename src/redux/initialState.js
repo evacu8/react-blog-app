@@ -32,7 +32,22 @@ const initialState = {
       publishedDate: new Date('02-02-2022'),
       author: 'John Doe'
     },
-  ]
+  ],
+
+  categories: [
+    {
+      id: '1',
+      value: 'Sport',
+    },
+    {
+      id: '2',
+      value: 'News',
+    },
+    {
+      id: '3',
+      value: 'Movies',
+    },
+  ],
 }
 
 export default initialState;
