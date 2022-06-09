@@ -16,11 +16,13 @@ const PostForm = ({ action, actionText, ...props}) => {
   const [content, setContent] = useState(props.content || '');
   const [contentError, setContentError] = useState(false);
   const [dateError, setDateError] = useState(false);
+  const [categoryError, setCategoryError] = useState(false);
   const { register, handleSubmit: validate, formState: { errors } } = useForm();
 
   const handleSubmit = () => {
     setContentError(!content)
     setDateError(!publishedDate)
+    setCategoryError(!categoryError)
     if(content && publishedDate) {
       action({ title, author, publishedDate, shortDescription, content });
     }
@@ -80,7 +82,7 @@ const PostForm = ({ action, actionText, ...props}) => {
         <div className="mb-3">
           <label htmlFor="category" className="form-label">Category</label>
             <CategorySelect />
-          {/* {categoryError && <small className="d-block form-text text-danger mt-2">Select category</small>} */}
+          {categoryError && <small className="d-block form-text text-danger mt-2">Select category</small>}
         </div>
 
         <div className="mb-3">

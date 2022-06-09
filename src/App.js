@@ -8,6 +8,7 @@ import NotFound from './components/pages/NotFound/NotFound';
 import Header from './components/views/Header/Header';
 import Footer from './components/views/Footer/Footer';
 import { Container } from 'react-bootstrap';
+import Categories from './components/pages/Categories/Categories';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/categories" element={<Categories />} />
           <Route path="/post/:id" element={<SinglePost />} />
           <Route path="/post/add" element={<AddPost />} />
           <Route path="/post/edit/:id" element={<EditPost />} />
