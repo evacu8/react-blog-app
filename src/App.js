@@ -9,6 +9,7 @@ import Header from './components/views/Header/Header';
 import Footer from './components/views/Footer/Footer';
 import { Container } from 'react-bootstrap';
 import Categories from './components/pages/Categories/Categories';
+import Category from './components/features/Category/Category';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/categories" element={<Categories />} />
+          <Route path="/category/:category" element={<Category />} />
           <Route path="/post/:id" element={<SinglePost />} />
           <Route path="/post/add" element={<AddPost />} />
           <Route path="/post/edit/:id" element={<EditPost />} />
